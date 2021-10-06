@@ -1,0 +1,25 @@
+{
+  "presets": [
+    "@babel/env",
+    "@babel/react",
+    "@babel/preset-typescript",
+    "es2015",
+    "stage-0",
+    "@babel/preset-env",
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    "@babel/transform-runtime",
+    "@babel/transform-react-constant-elements",
+    "@babel/transform-react-inline-elements",
+    "transform-react-remove-prop-types",
+    "transform-react-pure-class-to-function",
+    [
+      "babel-plugin-root-import",
+      {
+        "rootPathSuffix": "."
+      }
+    ]
+  ]
+}

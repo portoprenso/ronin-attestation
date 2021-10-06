@@ -4,7 +4,8 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const webpack = require("webpack");
 module.exports = {
   mode: "development",
-  entry: ["./polyfills.js","./src/index.js"],
+  entry: "./src/index.js",
+  // entry: ["./polyfills.js","./src/index.js"],
   output: {
     filename: "[name].[hash].js",
     // chunkFilename: '[name]-[chunkhash].js',

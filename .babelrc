@@ -3,10 +3,10 @@
     "@babel/env",
     "@babel/react",
     "@babel/preset-typescript",
-    "es2015",
-    "stage-0",
-    "@babel/preset-env",
-    "@babel/preset-react"
+    // "es2015",
+    // "stage-0",
+    // "@babel/preset-env",
+    // "@babel/preset-react"
   ],
   "plugins": [
     "@babel/plugin-proposal-class-properties",
@@ -21,5 +21,8 @@
         "rootPathSuffix": "."
       }
     ]
-  ]
+  ],
+  "assumptions": {
+    "setPublicClassFields": false
+  }
 }

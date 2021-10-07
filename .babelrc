@@ -9,7 +9,16 @@
     // "@babel/preset-react"
   ],
   "plugins": [
-    "@babel/plugin-proposal-class-properties",
+    [
+      "@babel/plugin-proposal-decorators",
+      {"legacy": true}
+    ],
+    [
+      "@babel/plugin-proposal-class-properties",
+      {"loose": true}
+    ],
+    // "@babel/plugin-proposal-class-properties",
+    // "@babel/plugin-proposal-decorators",
     "@babel/transform-runtime",
     "@babel/transform-react-constant-elements",
     "@babel/transform-react-inline-elements",

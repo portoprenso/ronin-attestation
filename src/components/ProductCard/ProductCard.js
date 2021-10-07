@@ -1,9 +1,10 @@
+import { inject } from 'mobx-react';
 import React, { Component } from 'react';
 
+@inject("productsStore")
 class ProductCard extends Component {
   constructor(props){
     super();
-
   }
   render() {
     return (
@@ -12,9 +13,10 @@ class ProductCard extends Component {
           <h5>{this.props.product.title}</h5>
           <img src={this.props.product.main_image} />
           <p>{this.props.product.description}</p>
+          <button onClick={e => this.props.productsStore.deleteProduct(this.props.product.id)}>X</button>
         </div>
         :
-        <div>NO PRODUCT</div>}
+        <div>NO PRODUCTS</div>}
       </>
     );
   }

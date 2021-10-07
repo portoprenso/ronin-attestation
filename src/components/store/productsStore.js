@@ -16,6 +16,9 @@ import {
   getDocs,
   query,
   where,
+  addDoc,
+  setDoc,
+  deleteDoc
 } from "firebase/firestore/lite";
 import { db } from "../firebase";
 
@@ -27,30 +30,43 @@ class productsStore {
     makeObservable(this, {
       products: observable,
       categories: observable,
-      getProducts: action
+      getProducts: action,
+      getCategories: action,
+      addProduct: action
     });
   }
-  addProduct = async () => {
-    this.products.push({
-      title: "qweqwe",
-      id: "54e6ri67tgiuhjklm",
-      description: "lorem30",
-      prime: 50,
-      main_image: 'klgkGJHl238oh'
-    })
+
+  addProduct = async (product) => {
+    this.products.push(product);
+    setDoc(doc(collection(db, "products"), `/${product.id}`), product);
   }
+
+  deleteProduct = async (id) => {
+    this.products = this.products.filter(item => {
+      return item.id !== id
+    })
+    await deleteDoc(doc(collection(db, "products"), `/${id}`));
+  }
+
   getProducts = async () => {
     const q = query(
       collection(db, "products"),
-      where("title", "==", "test_product")
     );
     const { _docs } = await getDocs(q);
     this.products = _docs.map((each) => {
       return each.data();
     });
-    // return this.products;
   };
-  // @observable products = [];
+
+  getCategories = async () => {
+    const q = query(
+      collection(db, "categories"),
+    );
+    const { _docs } = await getDocs(q);
+    this.categories = _docs.map((each) => {
+      return each.data();
+    });
+  };
 }
 
 export default new productsStore();

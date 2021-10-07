@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Layout.scss'
 
 class Layout extends Component {
   constructor(props){
@@ -8,7 +9,7 @@ class Layout extends Component {
   render() {
     let {children} = this.props
     return (
-      <div>
+      <div className="layout-main">
         {children}
       </div>
     );

@@ -6,9 +6,9 @@ import { inject, observer } from "mobx-react";
 @inject("productsStore")
 @observer
 class ProductList extends Component {
-    // constructor() {
-    //   super();
-    // }
+    constructor() {
+      super();
+    }
   async componentDidMount() {
     this.props.productsStore.getProducts();
   }
@@ -25,6 +25,7 @@ class ProductList extends Component {
   }
 
   render() {
+    // let { products } = this.props.productsStore
     return (
       <div>
         <h2>KJHDKJHS</h2>

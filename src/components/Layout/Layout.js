@@ -1,16 +1,20 @@
-import React, { Component } from 'react';
-import './Layout.scss'
+import React, { Component } from "react";
+import "./Layout.scss";
+import Navbar from "./../Navbar/Navbar";
+import Footer from "./../Footer/Footer";
 
 class Layout extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
   }
-  
+
   render() {
-    let {children} = this.props
+    let { children } = this.props;
     return (
       <div className="layout-main">
+        <Navbar />
         {children}
+        <Footer />
       </div>
     );
   }

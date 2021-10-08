@@ -9,7 +9,7 @@
     // "@babel/preset-react"
   ],
   "plugins": [
-    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-decorators", { "legacy": true }], //used it to enable using inject and observe with class components, that are exactly using decorators by selves
     ["@babel/plugin-proposal-private-methods", { "loose": true }],
     ["@babel/plugin-proposal-private-property-in-object", { "loose": true }],
     ["@babel/plugin-proposal-class-properties", { "loose": true }],

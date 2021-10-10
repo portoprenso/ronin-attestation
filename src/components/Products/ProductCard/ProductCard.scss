@@ -1,0 +1,39 @@
+@import "../../../Variables.scss";
+
+.product_card {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 300px;
+  margin-top: 20px;
+  box-shadow: $buttonboxshadow;
+  &__image {
+    margin: auto;
+    width: 50%;
+  }
+  &__title {
+    color: $darkGray;
+    text-align: right;
+  }
+  &__desc {
+    text-align: center;
+  }
+  &__btn-container {
+    padding: 5px 0;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: $containerbackgroundcolor;
+  }
+  &__btn {
+    @include standard-button;
+    width: 25%;
+    max-width: 100px;
+    img {
+      height: 20px;
+    }
+  }
+  &__btn:hover {
+    @include btn-hover;
+  }
+}

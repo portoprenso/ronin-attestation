@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from "mobx-react";
+import { Component } from "react";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import Layout from "./components/Layout/Layout";
+// import productsStore from "./components/store/productsStore";
+import HomePage from './components/HomePage/HomePage';
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
+import AddProduct from "./components/Products/AddProduct/AddProduct";
+import productsStore from "./components/store/productsStore";
+import authStore from "./components/store/authStore";
+import Sign from './components/Authorization/Sign';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <Provider productsStore={productsStore} authStore={authStore}>
+        <Router>
+          <Navbar />
+          <Layout>
+            <Switch>
+              <Route exact path="/" component={HomePage}/>
+              <Route exact path="/addproduct" component={AddProduct} />
+              <Route exact path="/signin" component={Sign} />
+              <Route exact path="/signup" component={Sign} />
+            </Switch>
+          </Layout>
+          <Footer />
+        </Router>
+      </Provider>
+    );
+  }
 }
 
 export default App;

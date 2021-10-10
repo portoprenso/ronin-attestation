@@ -1,0 +1,50 @@
+@import "../../../Variables.scss";
+.add-products {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  &__category-input {
+    position: relative;
+    cursor: pointer;
+    background-color: $buttoncolor;
+    border-radius: $borderRadius;
+    transition: background-color 150ms ease-in-out, box-shadow 150ms ease-in-out;
+    &__menu {
+      position: absolute;
+      pointer-events: none;
+    }
+    &__option {
+      border-radius: 2px;
+      background-color: #d8e2dc;
+      max-width: 200px;
+      border: 1px solid #6b705c;
+      margin-top: 1px;
+      opacity: 0;
+      pointer-events: none;
+      transition: display 150ms ease-in-out;
+    }
+  }
+  .active {
+    @include btn-hover;
+  }
+  .active .add-products__category-input__option {
+    opacity: 1;
+    cursor: pointer;
+    pointer-events: auto;
+  }
+  &__container {
+    flex-direction: column;
+    display: flex;
+    justify-content: space-evenly;
+    height: 50vh;
+    input {
+      display: block;
+      outline: none;
+      border: none;
+      border-radius: $borderRadius;
+    }
+    input::placeholder {
+      text-align: end;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+$svgGray: invert(50%) sepia(0%) saturate(106%) hue-rotate(93deg)
+  brightness(114%) contrast(76%);
+$gray: #e0e0e0;
+$darkGray: #7a7a7a;
+$borderRadius: 4px;
+$containerbackgroundcolor: #f1faee;
+$buttoncolor: #7fb0fa;
+$buttoncoloractive: #afceff;
+$buttonboxshadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.48);
+$inputboxshadow: 0px 0px 8px 0px rgba(151, 169, 242, 0.75);
+
+@mixin standard-button {
+  cursor: pointer;
+  background-color: $buttoncolor;
+  border-radius: $borderRadius;
+  transition: background-color 100ms ease-in-out, box-shadow 100ms ease-in-out;
+  border: none;
+}
+
+@mixin btn-hover{
+  background-color: $buttoncoloractive;
+  box-shadow: $buttonboxshadow;
+}
+
+@mixin font-large-bold{
+  font-size: large;
+  font-weight: 700;  
+}

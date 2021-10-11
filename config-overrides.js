@@ -2,7 +2,7 @@ const {
   addDecoratorsLegacy,
   override,
   // addBabelPlugin,
-  disableEsLint
+  disableEsLint,
 } = require("customize-cra");
 // const pluginProposalDecorators = require("@babel/plugin-proposal-decorators");
 

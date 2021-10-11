@@ -35,8 +35,10 @@
   &__container {
     flex-direction: column;
     display: flex;
-    justify-content: space-evenly;
-    height: 50vh;
+    border-radius: $borderRadius;
+    background-color: $gray;
+    // justify-content: space-evenly;
+    // height: 50vh;
     input {
       display: block;
       outline: none;
@@ -46,5 +48,8 @@
     input::placeholder {
       text-align: end;
     }
+  }
+  &__container>:not(meta){
+    margin: 3px 5px;
   }
 }

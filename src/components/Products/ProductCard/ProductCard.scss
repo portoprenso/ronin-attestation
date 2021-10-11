@@ -9,8 +9,10 @@
   margin-top: 20px;
   box-shadow: $buttonboxshadow;
   &__image {
+    cursor: pointer;
     margin: auto;
-    width: 50%;
+    max-width: 50%;
+    max-height: 200px;
   }
   &__title {
     color: $darkGray;

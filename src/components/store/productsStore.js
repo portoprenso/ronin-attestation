@@ -18,8 +18,12 @@ import {
   where,
   addDoc,
   setDoc,
-  deleteDoc
+  deleteDoc,
+  updateDoc
 } from "firebase/firestore/lite";
+
+import _ from 'lodash'
+
 import { db } from "../firebase";
 
 class productsStore {
@@ -27,18 +31,28 @@ class productsStore {
     // super();
     this.products = [];
     this.categories = [];
+    this.currentProduct = null;
     makeObservable(this, {
       products: observable,
       categories: observable,
+      currentProduct: observable,
       getProducts: action,
       getCategories: action,
-      addProduct: action
+      addProduct: action,
+      getSpecifiedProduct: action,
+      deleteProduct: action,
     });
   }
 
   addProduct = async (product) => {
     this.products.push(product);
-    setDoc(doc(collection(db, "products"), `/${product.id}`), product);
+    const productWithoutCollections = _.omit(product, ["achievements", "achievements_input", "certificate"])
+    const collectionsFromProduct = _.pick(product, ["achievements", "certificate"])
+    const docRef = await doc(collection(db, "products"), `/${product.id}`)
+    const response = await setDoc(docRef, productWithoutCollections);
+    // const collectionRef = await addDoc(collection(docRef, "extraprops"), collectionsFromProduct)
+    const collectionRef = await setDoc(doc(collection(docRef, "extraprops"), `/extraData`), collectionsFromProduct)
+    console.warn(collectionRef)
   }
 
   deleteProduct = async (id) => {
@@ -56,6 +70,16 @@ class productsStore {
     this.products = _docs.map((each) => {
       return each.data();
     });
+  };
+
+  getSpecifiedProduct = async (id) => {
+    const docRef = await doc(db, `products/${id}`);
+    const docSnap = await getDoc(docRef);
+    if(docSnap.exists()){
+      this.currentProduct = await docSnap.data()
+    } else {
+      this.currentProduct = null
+    }
   };
 
   getCategories = async () => {

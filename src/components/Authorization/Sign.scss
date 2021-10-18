@@ -23,7 +23,7 @@
     border-radius: $borderRadius;
     height: 600px;
     width: 500px;
-    // background-color: $containerbackgroundcolor;
+    // background-color: $containerBackgroundColor;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,7 +44,7 @@
       }
       input:focus {
         outline: none;
-        box-shadow: $inputboxshadow;
+        box-shadow: $inputBoxShadow;
         width: 200px;
       }
       input::placeholder {

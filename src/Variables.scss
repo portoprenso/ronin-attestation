@@ -2,27 +2,53 @@ $svgGray: invert(50%) sepia(0%) saturate(106%) hue-rotate(93deg)
   brightness(114%) contrast(76%);
 $gray: #e0e0e0;
 $darkGray: #7a7a7a;
+$logoColor: #3765af;
 $borderRadius: 4px;
-$containerbackgroundcolor: #f1faee;
-$buttoncolor: #7fb0fa;
-$buttoncoloractive: #afceff;
-$buttonboxshadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.48);
-$inputboxshadow: 0px 0px 8px 0px rgba(151, 169, 242, 0.75);
+$containerBackgroundColor: white;
+// $containerbackgroundcolor: #f1faee;
+$buttonColor: #7fb0fa;
+$buttonColorActive: #afceff;
+$buttonBoxShadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.48);
+$inputBoxShadow: 0px 0px 8px 0px rgba(151, 169, 242, 0.75);
+$cardBoxShadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+$lightGrayBorder: solid #d1d7dc 1px;
 
 @mixin standard-button {
   cursor: pointer;
-  background-color: $buttoncolor;
-  border-radius: $borderRadius;
+  border: $lightGrayBorder;
+  background-color: $buttonColor;
+  // border-radius: $borderRadius;
   transition: background-color 100ms ease-in-out, box-shadow 100ms ease-in-out;
   border: none;
 }
 
+@mixin standard-button-transparent {
+  cursor: pointer;
+  border: $lightGrayBorder;
+  background-color: transparent;
+  border-radius: $borderRadius;
+  transition: background-color 100ms ease-in-out, box-shadow 100ms ease-in-out;
+  box-shadow: $inputBoxShadow;
+  border: none;
+}
+
 @mixin btn-hover{
-  background-color: $buttoncoloractive;
-  box-shadow: $buttonboxshadow;
+  // background-color: $buttonColorActive;
+  box-shadow: $buttonBoxShadow;
 }
 
 @mixin font-large-bold{
   font-size: large;
   font-weight: 700;  
+}
+
+@mixin inputWithShadow {
+  height: 50px;
+  width: 200px;
+  display: block;
+  outline: none;
+  border: none;
+  border-radius: $borderRadius;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0 , .1);
+  padding: 22px 18px;
 }

@@ -5,7 +5,7 @@ import { withRouter, Link } from "react-router-dom";
 import GoogleIcon from "@mui/icons-material/Google";
 
 
-@inject("authStore")
+@inject("authStore", "productsStore")
 @observer
 class Sign extends Component {
   constructor() {
@@ -18,6 +18,7 @@ class Sign extends Component {
     };
   }
   render() {
+    console.log("THIS IS SIGN PAGE", this.props.history.location.pathname);
     let title;
     switch (this.props.history.location.pathname) {
       case "/signin":

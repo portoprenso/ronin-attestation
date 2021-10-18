@@ -11,6 +11,9 @@ import productsStore from "./components/store/productsStore";
 import authStore from "./components/store/authStore";
 import Sign from './components/Authorization/Sign';
 import ProductDetails from "./components/Products/ProductDetails/ProductDetails";
+import Cart from './components/Cart/Cart';
+import Profile from "./components/Authorization/Profile";
+import PrivateRoute from "./PrivateRoute";
 
 class App extends Component {
   render() {
@@ -21,9 +24,11 @@ class App extends Component {
           <Layout>
             <Switch>
               <Route exact path="/" component={HomePage}/>
-              <Route exact path="/addproduct" component={AddProduct} />
+              <PrivateRoute exact path="/addproduct" component={AddProduct} />
+              <PrivateRoute exact path="/cart" component={Cart} />
               <Route exact path="/signin" component={Sign} />
               <Route exact path="/signup" component={Sign} />
+              <PrivateRoute exact path="/profile/:id" component={Profile} />
               <Route exact path="/product/:id" component={ProductDetails} />
             </Switch>
           </Layout>

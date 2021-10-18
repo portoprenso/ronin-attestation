@@ -1,6 +1,6 @@
 @import '../../Variables.scss';
 
-* {
+*,*::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -9,7 +9,8 @@
 
 .layout-main{
   // max-width: 1280px;
+  min-height: 100vh;
   margin: 0 auto;
   border-radius: 8px;
-  background-color: $containerbackgroundcolor;
+  background-color: $containerBackgroundColor;
 }

@@ -2,7 +2,7 @@
 
 .navbar-main {
   width: 100%;
-  background-color: $containerbackgroundcolor;
+  background-color: $containerBackgroundColor;
   height: 50px;
   display: flex;
   justify-content: space-evenly;
@@ -34,7 +34,7 @@
       }
       input:focus {
         outline: none;
-        box-shadow: $inputboxshadow;
+        box-shadow: $inputBoxShadow;
         width: 200px;
       }
       input::placeholder {

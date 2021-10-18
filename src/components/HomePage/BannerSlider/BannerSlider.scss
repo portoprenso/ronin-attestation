@@ -24,6 +24,9 @@
       content: "@";
     }
   }
+  &__outer-container{
+    box-shadow: $inputBoxShadow;
+  }
 }
 
 .banner-slide > img{

@@ -5,11 +5,22 @@ import '../Navbar/Navbar.scss'
 import { Link } from 'react-router-dom'
 import { observer, inject } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
+import { onAuthStateChanged } from '@firebase/auth';
+import { auth } from '../firebase';
 
 
-@inject("authStore")
+@inject("authStore", "productsStore")
 @observer
 class Navbar extends Component {
+  async componentDidMount() {
+    if(!this.props.productsStore.cart) this.props.productsStore.getCart();
+    onAuthStateChanged(auth, (user) => {
+      // console.log(user)
+      this.props.authStore.currentUser = user
+    })
+  
+  }
+
   render() {
 
     const handleLogout = async () => {
@@ -21,8 +32,19 @@ class Navbar extends Component {
       }
     }
 
+    console.log(this.props.authStore.currentUser)
 
-    console.log(!!this.props.authStore.currentUser)
+    const findProduct = (e) => {
+      const regex = new RegExp(`${e.target.value}`, "gi")
+      this.props.productsStore.products = this.props.productsStore.productsCopy.filter(item => {
+        let flag = false
+        if(regex.test(item.title) || regex.test(item.description)) flag = true
+        return flag
+      })
+    }
+
+    // console.log(!!this.props.authStore.currentUser)
+    // console.log(this.props.history)
     return (
       <nav className="navbar-main">
         <div className="navbar-main__nav-left">
@@ -31,15 +53,15 @@ class Navbar extends Component {
         <div className="navbar-main__nav-right">
           <div className="navbar-main__nav-right__input">
             <img src={searchIcon} alt="search-icon"/>
-            <input placeholder="Find your course"/>
+            <input placeholder="Find your course" onInput={findProduct}/>
           </div>
           <ul className="navbar-main__nav-right__menu">
             <li className="navbar-main__nav-right__menu__item">
               <Link to="/">Home</Link>
               </li>
             <li className="navbar-main__nav-right__menu__item"><Link to="/addproduct">AddProduct</Link></li>
-            <li className="navbar-main__nav-right__menu__item"><Link to="#">Cart</Link></li>
-            {this.props.authStore.currentUser && <li className="navbar-main__nav-right__menu__item"><Link to="/myprofile">My profile</Link></li>}
+            <li className="navbar-main__nav-right__menu__item"><Link to="/cart">Cart</Link></li>
+            {this.props.authStore.currentUser && <li className="navbar-main__nav-right__menu__item"><Link to={`/profile/${this.props.authStore.currentUser.uid}`}>My profile</Link></li>}
             <li onClick={handleLogout} className="navbar-main__nav-right__menu__item">Sign {this.props.authStore.currentUser ? "out" : "in"}</li>
           </ul>
         </div>

@@ -9,7 +9,7 @@ import "swiper/components/navigation/navigation.min.css";
 import "swiper/components/pagination/pagination.min.css";
 import { inject, observer } from "mobx-react";
 import { Link } from 'react-router-dom'
-import { toJS } from "mobx";
+// import { toJS } from "mobx";
 
 SwiperCore.use([Navigation, Pagination, Parallax]);
 
@@ -22,7 +22,7 @@ class BannerSlider extends Component {
 
   render() {
     const eachSlide = (product) => {
-      console.log(toJS(product))
+      // console.log(toJS(product))
       return (
         <>
           {product.categories && product?.categories.map((eachCategory) => {
@@ -41,12 +41,12 @@ class BannerSlider extends Component {
     };
 
     return (
-      <div>
+      <div className="banner-slide__outer-container">
         <Swiper
           // spaceBetween={50}
           slidesPerView={2}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
+          // onSlideChange={() => console.log("slide change")}
+          // onSwiper={(swiper) => console.log(swiper)}
           navigation
           // pagination
           loop

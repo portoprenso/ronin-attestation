@@ -10,9 +10,7 @@ class Layout extends Component {
     let { children } = this.props;
     return (
       <div className="layout-main">
-        {/* <Navbar /> */}
         {children}
-        {/* <Footer /> */}
       </div>
     );
   }

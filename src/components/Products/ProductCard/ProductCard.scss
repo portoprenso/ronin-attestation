@@ -1,13 +1,30 @@
 @import "../../../Variables.scss";
 
 .product_card {
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  width: 400px;
-  height: 300px;
-  margin-top: 20px;
-  box-shadow: $buttonboxshadow;
+  // background-color: white;
+  // display: flex;
+  // flex-direction: column;
+  // width: 400px;
+  // border-radius: 20px;
+  // height: 300px;
+  // margin-top: 20px;
+  // box-shadow: $buttonBoxShadow;
+
+  display: inline-block;
+  width: 240px;
+  text-align: center;
+
+  &__text-container{
+    box-shadow: $cardBoxShadow;
+    padding: 120px 20px 20px 20px;
+    border-radius: 20px;
+    margin: -120px 0px 0px 0px;
+    margin-top: -120px;
+    background: #fff;
+    line-height: 19px;
+    font-size: 14px;
+  }
+
   &__image {
     cursor: pointer;
     margin: auto;
@@ -20,22 +37,54 @@
   }
   &__desc {
     text-align: center;
+    // margin-top: 120px;
   }
   &__btn-container {
     padding: 5px 0;
     display: flex;
     justify-content: space-evenly;
-    background-color: $containerbackgroundcolor;
+    background-color: $containerBackgroundColor;
   }
   &__btn {
-    @include standard-button;
+    @include standard-button-transparent;
     width: 25%;
     max-width: 100px;
     img {
       height: 20px;
     }
+    &__in-cart {
+      background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(115,255,156,1) 0%, rgba(36,171,76,0.19961488013174022) 100%);
+      // background-color: red
+    }
   }
   &__btn:hover {
     @include btn-hover;
   }
+}
+
+.img-container {
+  height: 250px;
+  width: 200px;
+  overflow: hidden;
+  // border-radius: 0px 0px 20px 20px;
+  display: inline-block;
+  // margin-bottom: 10px;
+}
+
+.img-container img {
+  -webkit-filter: drop-shadow(5px 5px 5px #222);
+  filter: drop-shadow(5px 5px 5px #222);
+  max-height: 80%;
+  max-width: 90%;
+  margin: auto;
+  cursor: pointer;
+}
+
+.inner-skew {
+  display: inline-block;
+  border-radius: 20px;
+  overflow: hidden;
+  padding-top: 80px;
+  height: 250px;
+  width: 200px;
 }

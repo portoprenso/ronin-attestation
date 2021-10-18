@@ -1,41 +1,27 @@
 import {
-  action,
-  autorun,
-  configure,
+  // action,
+  // autorun,
+  // configure,
   observable,
-  makeAutoObservable,
+  // makeAutoObservable,
   makeObservable,
 } from "mobx";
-import { getProducts } from "./../helpers/functions";
 
-import {
-  doc,
-  getDoc,
-  collection,
-  collectionGroup,
-  getDocs,
-  query,
-  where,
-  addDoc,
-  setDoc,
-  deleteDoc,
-} from "firebase/firestore/lite";
-
-import { auth, db } from "../firebase";
+import { auth } from "../firebase";
 
 import {
   createUserWithEmailAndPassword,
-  getRedirectResult,
+  // getRedirectResult,
   onAuthStateChanged,
-  deleteUser,
-  getIdToken,
-  sendEmailVerification,
-  sendPasswordResetEmail,
+  // deleteUser,
+  // getIdToken,
+  // sendEmailVerification,
+  // sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
-  updateCurrentUser,
-  updateEmail,
-  updatePassword,
+  // updateCurrentUser,
+  // updateEmail,
+  // updatePassword,
   signInWithPopup,
   GoogleAuthProvider,
 } from "@firebase/auth";
@@ -54,9 +40,11 @@ class authStore {
     });
   }
 
+
   loginWithGoogle = async () => {
     const {user} = await signInWithPopup(auth, new GoogleAuthProvider());
     console.log(user)
+    localStorage.setItem("accessToken", JSON.stringify(user.accessToken));
 
     // this.currentUser = { ...user.user, from: "google" };
     const userToSave = {
@@ -67,23 +55,24 @@ class authStore {
       uid: user.uid,
       phoneNumber: user.phoneNumber,
       displayName: user.displayName,
-      accessToken: user.accessToken,
       from: "google"
     }
     this.currentUser = Object.assign({}, userToSave);
     console.log(this.currentUser);
     console.log(Object.assign({}, userToSave));
     console.log(JSON.parse(JSON.stringify(userToSave)));
+
+
   };
 
   signUpWithEmail = async (user) => {
     try {
-      const user = await createUserWithEmailAndPassword(
+      const userFromResponse = await createUserWithEmailAndPassword(
         auth,
         user.email,
         user.password
       );
-      this.currentUser = { ...user.user, from: "email" };
+      this.currentUser = { ...userFromResponse.user, from: "email" };
       return true
     } catch (error) {
       console.log("111111111111111111111111111111111111111111111111", error)

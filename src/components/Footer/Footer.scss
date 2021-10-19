@@ -1,0 +1,35 @@
+@import '../../Variables.scss';
+
+.footer__container{
+  width: 100%;
+  background-color: $containerBackgroundColor;
+  height: 250px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  &__left{
+    display: flex;
+    height: 100%;
+    width: 50%;
+    align-items: flex-end;
+    justify-content: center;
+    &__image{
+      height: 50px;
+    }
+  }
+  &__right{
+    display: flex;
+    height: 100%;
+    width: 50%;
+    justify-content: center;
+    align-items: flex-end;
+    &__links ul{
+      list-style: none;
+      li a{
+        cursor: pointer;
+        text-decoration: none;
+        color: black;
+      }
+    }
+  }
+}

@@ -1,0 +1,78 @@
+@import "../../Variables.scss";
+
+.profile{
+
+  &__favorites-container{
+    padding-top: 30px;
+    max-width: 1280px;
+    margin: 0 auto;
+    &__list{
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-evenly;
+      &-item{
+        display: flex;
+        flex-direction: column;
+        box-shadow: $cardBoxShadow;
+        border: $lightGrayBorder;
+        border-radius: $borderRadius;
+        width: 250px;
+        height: 300px;
+        justify-content: space-between;
+        img{
+          max-width: 100%;
+          max-height: 300px;
+          padding: 5px auto;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  // standard-button-transparent
+
+
+
+
+
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .title {
+    color: grey;
+    font-size: 18px;
+  }
+  
+  button {
+    @include standard-button-transparent;
+    font-size: 25px;
+    width: 100%;
+    margin: 5px auto;
+    // border: none;
+    // outline: 0;
+    // display: inline-block;
+    // padding: 8px;
+    // color: white;
+    // background-color: #000;
+    // text-align: center;
+    // cursor: pointer;
+    // width: 100%;
+    // font-size: 18px;
+  }
+  
+  a {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+  }
+  
+  button:hover {
+    @include btn-hover;
+  }
+  
+}

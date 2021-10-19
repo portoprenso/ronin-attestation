@@ -1,0 +1,145 @@
+@import '../../../Variables.scss';
+
+.product-details{
+  &__certificate{
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  &__top-container{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #1c1d1f;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    width: 100%;
+
+    &__inner{
+      margin: 0 200px;
+    }
+
+
+    &__info{
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+    }
+  }
+  &__categories{
+    display: flex;
+    list-style: none;
+  }
+  &__categories li {
+    margin-left: 15px;
+  }
+
+
+  &__bottom-container{
+    margin: 0 200px;
+    width: 700px;
+    &__achievements{
+      margin-top: 20px;
+      border: $lightGrayBorder;
+      padding: 20px;
+
+      &__read-more {
+        display: flex;
+        list-style-type: "✔";
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        position: relative;
+        overflow: hidden;
+        background-image: none;
+
+        li{
+          padding-top: 10px;
+          width: 300px;
+          padding-left: 5px;
+        }
+      }
+      
+      .achievement-collapse{
+        max-height: 200px!important;
+        background-image: linear-gradient(to bottom, transparent, white);
+
+        // transition: max-height 1s ease-in-out;
+        // animation: collapse 1s linear 1 alternate;
+      }
+
+    }
+
+    &__card {
+      width: 340px;
+      position: fixed;
+      top: 80px;
+      right: 100px;
+      border: $lightGrayBorder;
+      background-color: $containerBackgroundColor;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+
+
+      &__info{
+        padding: 10px;
+
+        small:not(small:nth-child(1)) {
+          display: block;
+          text-align: center;
+          margin-top: 5px;
+          margin-bottom: 5px;
+        }
+        &__response{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          
+          >button{
+            width: 100%;
+          }
+
+          >div{
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            >button:nth-child(1) {
+              background-color: #a435f0;
+              color: white;
+              width: 80%;
+            }
+            >button:nth-child(2) {
+              width: 50px;
+            }
+          }
+          button{
+            border-radius: 0px;
+            border: $lightGrayBorder;
+            height: 50px;
+            @include font-large-bold;
+            cursor: pointer;
+          }
+        }
+      }
+
+      img{
+        margin: 0 auto;
+        max-width: 100%;
+        max-height: 225px;
+      }
+    }
+  }
+}
+
+@keyframes collapse {
+  from {
+    max-height: 10px;
+  }
+  to {
+    max-height: 2000px;
+  }
+}

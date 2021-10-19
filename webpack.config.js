@@ -61,7 +61,7 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
     new CopyPlugin({
       patterns: [{
-        from: 'assets',
+        from: './src/assets',
         to: 'dist'
         // from: path.resolve(__dirname, 'assets/logo-main.png'),
         // to: 'dist'

@@ -1,0 +1,78 @@
+@import "../../Variables.scss";
+
+.error {
+  background-color: rgb(255, 168, 168);
+  border-radius: $borderRadius;
+  padding: 5px;
+  @include font-large-bold;
+}
+
+.sign {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10vh 15vw;
+  background: center / cover no-repeat
+    url("../../assets/background_gradient.jpg");
+  min-height: 100vh;
+  width: 100%;
+  &__modal {
+    > div {
+      @include font-large-bold;
+    }
+    border-radius: $borderRadius;
+    height: 600px;
+    width: 500px;
+    // background-color: $containerBackgroundColor;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    &__inputs {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      height: 300px;
+      input {
+        border: none;
+        border-radius: $borderRadius;
+        transition: box-shadow 150ms ease-in-out, width 150ms ease-in-out;
+        width: 150px;
+        height: 50px;
+        font-size: large;
+      }
+      input:focus {
+        outline: none;
+        box-shadow: $inputBoxShadow;
+        width: 200px;
+      }
+      input::placeholder {
+        text-align: center;
+      }
+      button {
+        @include standard-button;
+        @include font-large-bold;
+        height: 50px;
+        width: 150px;
+      }
+      button:hover {
+        @include btn-hover;
+      }
+    }
+    &__inputs ~ div {
+      @include font-large-bold;
+      @include standard-button;
+      width: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+    }
+    &__inputs ~ div:hover {
+      @include btn-hover;
+    }
+  }
+  &__propose {
+  }
+}

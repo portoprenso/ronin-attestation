@@ -1,12 +1,16 @@
-* {
+@import '../../Variables.scss';
+
+*,*::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .layout-main{
-  max-width: 1280px;
+  // max-width: 1280px;
+  min-height: 100vh;
   margin: 0 auto;
   border-radius: 8px;
-  background-color: #f1faee;
+  background-color: $containerBackgroundColor;
 }

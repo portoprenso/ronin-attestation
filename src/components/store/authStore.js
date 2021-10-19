@@ -98,34 +98,6 @@ class authStore {
       return false
     }
   }
-
-  // addProduct = async (product) => {
-  //   this.products.push(product);
-  //   setDoc(doc(collection(db, "products"), `/${product.id}`), product);
-  // };
-
-  // deleteProduct = async (id) => {
-  //   this.products = this.products.filter((item) => {
-  //     return item.id !== id;
-  //   });
-  //   await deleteDoc(doc(collection(db, "products"), `/${id}`));
-  // };
-
-  // getProducts = async () => {
-  //   const q = query(collection(db, "products"));
-  //   const { _docs } = await getDocs(q);
-  //   this.products = _docs.map((each) => {
-  //     return each.data();
-  //   });
-  // };
-
-  // getCategories = async () => {
-  //   const q = query(collection(db, "categories"));
-  //   const { _docs } = await getDocs(q);
-  //   this.categories = _docs.map((each) => {
-  //     return each.data();
-  //   });
-  // };
 }
 
 export default new authStore();

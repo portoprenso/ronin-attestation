@@ -5,7 +5,7 @@ import './ProductDetails.scss'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import LoaderSpinner from './../../LoaderSpinner/LoaderSpinner';
 
-@inject("productsStore")
+@inject("productsStore", "authStore")
 @observer
 class ProductDetails extends Component {
 
@@ -71,6 +71,7 @@ class ProductDetails extends Component {
               {/* {this.props.productsStore.currentProduct.achievements && renderAch() } */}
               <p>{this.props.productsStore.currentProduct.description}</p>
               {this.props.productsStore.currentProduct.certificate ? <h2 className="product-details__certificate">ⓘ Graduation certificate</h2> : <></>}
+              {this.props.authStore.currentUser ? <h2 style={{cursor: 'pointer'}} onClick={() => this.props.history.push(`/editproduct/${this.props.match.params.id}`)} className="product-details__certificate">Edit product</h2> : <></>}
               {this.props.productsStore.currentProduct?.author && <h3 name={this.props.productsStore.currentProduct?.author?.uid}>{this.props.productsStore.currentProduct?.author?.displayName}</h3>}
             </div>
           </div>

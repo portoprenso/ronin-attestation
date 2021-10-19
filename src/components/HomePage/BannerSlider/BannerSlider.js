@@ -27,7 +27,7 @@ class BannerSlider extends Component {
         <>
           {product.categories && product?.categories.map((eachCategory) => {
             return (
-              <li>
+              <li className="banner-slider-main" key={Date.now() + Math.floor(Math.random()*100)}>
                 {this.props.productsStore.categories.map((item) => {
                   if (item.id === eachCategory) {
                     return <span>{item.title}</span>;

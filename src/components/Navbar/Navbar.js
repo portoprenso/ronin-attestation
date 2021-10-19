@@ -47,6 +47,22 @@ class Navbar extends Component {
     // console.log(this.props.history)
     return (
       <nav className="navbar-main">
+        <nav role="navigation">
+          <div id="menuToggle">
+            <input type="checkbox" />
+            <span></span>
+            <span></span>
+            <span></span>
+            
+            <ul id="menu">
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/addproduct">AddProduct</Link></li>
+              <li><Link to="/cart">Cart</Link></li>
+              {this.props.authStore.currentUser && <li><Link to={`/profile/${this.props.authStore.currentUser.uid}`}>My profile</Link></li>}
+              <li onClick={handleLogout} >Sign {this.props.authStore.currentUser ? "out" : "in"}</li>
+            </ul>
+          </div>
+        </nav>
         <div className="navbar-main__nav-left">
           <img src={logo} className="navbar-main__logo" alt="main-logo"/>
         </div>

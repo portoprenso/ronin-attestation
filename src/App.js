@@ -2,7 +2,6 @@ import { Provider } from "mobx-react";
 import { Component } from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
-// import productsStore from "./components/store/productsStore";
 import HomePage from './components/HomePage/HomePage';
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
@@ -14,6 +13,7 @@ import ProductDetails from "./components/Products/ProductDetails/ProductDetails"
 import Cart from './components/Cart/Cart';
 import Profile from "./components/Authorization/Profile";
 import PrivateRoute from "./PrivateRoute";
+import EditProduct from './components/Products/EditProduct/EditProduct';
 
 class App extends Component {
   render() {
@@ -25,6 +25,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={HomePage}/>
               <PrivateRoute exact path="/addproduct" component={AddProduct} />
+              <PrivateRoute exact path="/editproduct/:id" component={EditProduct} />
               <PrivateRoute exact path="/cart" component={Cart} />
               <Route exact path="/signin" component={Sign} />
               <Route exact path="/signup" component={Sign} />
@@ -35,7 +36,6 @@ class App extends Component {
           <Footer />
         </Router>
       </Provider>
-
     );
   }
 }

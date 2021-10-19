@@ -32,3 +32,10 @@
 .banner-slide > img{
   max-height: 300px;
 }
+
+
+@media all and (max-width: 768px) {
+  .banner-slide__outer-container{
+    display: none;
+  }
+}

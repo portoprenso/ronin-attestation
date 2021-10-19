@@ -1,37 +1,62 @@
+import { inject, observer } from "mobx-react";
+import React, { Component } from "react";
 import { Chip, Divider, Stack } from '@mui/material';
-import { inject, observer } from 'mobx-react';
-import React, { Component } from 'react';
 import { generateUUID } from '../../helpers/functions';
 import ProductCard from '../ProductCard/ProductCard';
-import './AddProduct.scss'
 import DeleteIcon from '@mui/icons-material/Delete';
 import _ from "lodash"
 
+import "./EditProduct.scss";
 
-@inject("productsStore")
+@inject("productsStore", "authStore")
 @observer
-class AddProduct extends Component {
+class EditProduct extends Component {
   constructor() {
     super();
     this.state = {
-      title: "",
+      categories: [],
       description: "",
       main_image: "",
-      categories: [],
       price: 0,
-      certificate: false,
+      title: "",
       achievements: [],
-      achievements_input: [],
-      favorites: []
+      certificate: false,
+      favorites: [],
+      id: "",
+      achievements_input: "",
+      author: {displayName: "", uid: ""}
     };
   }
-
   async componentDidMount() {
-    this.props.productsStore.getCategories();
-  }
-
-  async componentDidUpdate(prevProps, prevState, snapshot) {
-    // console.log("UIHLKBJJHKGLJB<MNJHVBN")
+    if (this.props.productsStore.categories.length < 1) {
+      this.props.productsStore.getCategories();
+    }
+    await this.props.productsStore.getSpecifiedProduct(
+      this.props.match.params.id
+    );
+    const {
+      categories = [],
+      description = "",
+      main_image = "",
+      price = 0,
+      title = "",
+      achievements = [],
+      certificate = false,
+      favorites = [],
+      id = ""
+    } = this.props.productsStore.currentProduct;
+    this.setState({
+      categories,
+      description,
+      main_image,
+      price,
+      title,
+      achievements,
+      certificate,
+      favorites,
+      id,
+      author: {displayName: this.props.authStore.currentUser.displayName, uid: this.props.authStore.currentUser.uid}
+    });
   }
 
   render() {
@@ -49,7 +74,7 @@ class AddProduct extends Component {
         this.setState({achievements_input: ""})
       }
     };
-  
+
     const toggleCategory = (event) => {
       if(this.state.categories.includes(Number(event.target.id))){
         this.setState({categories: this.state.categories.filter(item => item !== Number(event.target.id))})
@@ -59,10 +84,11 @@ class AddProduct extends Component {
       }
       console.log(this.state)
     }
-    return (
-      <div className="add-products">        
+
+    return <div>
+            <div className="add-products">        
         <div className="add-products__container">
-        <h2>Add new course</h2>
+        <h2>Edit course {this.state.title}</h2>
         <label className="custom-field" aria-label="Title">
           <input type="text" value={this.state.title} placeholder="Title" onInput={e => this.setState({title: e.target.value})}/>
           <span className="placeholder">Title</span>
@@ -80,7 +106,6 @@ class AddProduct extends Component {
 
         <input id="certificateEditProduct" type="checkbox" checked={this.state.certificate} placeholder="Certificate" onInput={e => this.setState({certificate: !this.state.certificate})}/>
         <label for="certificateEditProduct">Certificate</label>
-
 
         <label className="custom-field" aria-label="Main Image">
           <input type="text" value={this.state.main_image} placeholder="Main Image" onInput={e => this.setState({main_image: e.target.value})}/>
@@ -104,7 +129,7 @@ class AddProduct extends Component {
             </label>
             <Stack
             direction="row"
-            style={{flexWrap: "wrap", maxWidth: 500}}
+            style={{flexWrap: "wrap", maxWidth: "50vw"}}
             spacing={1}
             divider={<Divider orientation="vertical" flexItem />}
             >
@@ -117,20 +142,18 @@ class AddProduct extends Component {
                     deleteIcon={<DeleteIcon />}
                     variant="outlined"
                     name={ach}
+                    style={{overflow: "hidden"}}
                   />
               })}
             </Stack>
           </div>
           <button onClick={e => console.log(this.state)}>Show in console</button>
-          <button className="add-products__btn-add" onClick={() => this.props.productsStore.addProduct({
-            ...this.state,
-            id: generateUUID()
-          })}>Add product</button>
+          <button className="add-products__btn-add" onClick={() => this.props.productsStore.updateProduct(_.omit(this.state, ["achievements_input"]))}>Save changes</button>
         </div>
           <ProductCard product={this.state}/>
       </div>
-    );
+    </div>;
   }
 }
 
-export default AddProduct;
+export default EditProduct;

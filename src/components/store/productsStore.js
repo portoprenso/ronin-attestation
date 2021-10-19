@@ -62,6 +62,7 @@ class productsStore {
       checkIfProductInCart: action,
       toggleFavorite: action,
       getUsersFavorites: action,
+      updateProduct: action
     });
   }
 
@@ -74,6 +75,27 @@ class productsStore {
     const response = await setDoc(docRef, productWithoutCollections);
     // const collectionRef = await addDoc(collection(docRef, "extraprops"), collectionsFromProduct)
     const collectionRef = await setDoc(doc(collection(docRef, "extraprops"), `/extraData`), collectionsFromProduct)
+    console.warn(collectionRef)
+  }
+
+  updateProduct = async (product) => {
+    console.log(product)
+    this.products = this.products.map(item => {
+      if(item.id === product.id){
+        return product
+      } else return item
+    });
+    this.productsCopy = this.productsCopy.map(item => {
+      if(item.id === product.id){
+        return product
+      } else return item
+    });
+    const productWithoutCollections = _.omit(product, ["achievements", "achievements_input", "certificate", "author"])
+    const collectionsFromProduct = _.pick(product, ["achievements", "certificate", "author"])
+    const docRef = await doc(collection(db, "products"), `/${product.id}`)
+    const response = await updateDoc(docRef, productWithoutCollections);
+    // const collectionRef = await addDoc(collection(docRef, "extraprops"), collectionsFromProduct)
+    const collectionRef = await updateDoc(doc(collection(docRef, "extraprops"), `/extraData`), collectionsFromProduct)
     console.warn(collectionRef)
   }
 

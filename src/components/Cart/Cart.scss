@@ -169,3 +169,22 @@
       
 
  }
+
+
+ @media all and (max-width: 768px){
+   .cart-container__cart-item{
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     border: $lightGrayBorder;
+     border-radius: $borderRadius;
+     box-shadow: $cardBoxShadow;
+     margin: 15px auto;
+   }
+   .cart-container__cart-item__image-box{
+     width: 100%;
+   }
+   .cart-container__cart-item__title{
+     margin: 20px auto;
+   }
+ }
